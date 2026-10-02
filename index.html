@@ -1,0 +1,914 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biorepelente Natural | Parte #2</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f8f3;
+            color: #26352b;
+            line-height: 1.7;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                linear-gradient(rgba(9, 45, 24, 0.72), rgba(9, 45, 24, 0.72)),
+                url("https://images.unsplash.com/photo-1534710961216-75c88202f43e?auto=format&fit=crop&w=1800&q=80");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero {
+            max-width: 950px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: clamp(22px, 4vw, 38px);
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .datos {
+            margin: 30px auto 0;
+            max-width: 500px;
+            padding: 25px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 18px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .dato {
+            margin-bottom: 15px;
+        }
+
+        .dato:last-child {
+            margin-bottom: 0;
+        }
+
+        .dato strong {
+            color: #c8f5bb;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 28px;
+            background: #72b45c;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #4e913f;
+            transform: translateY(-3px);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #123d25;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #a8e69a;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 25px;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo h2 {
+            font-size: 38px;
+            color: #245c35;
+            margin-bottom: 12px;
+        }
+
+        .titulo p {
+            color: #607267;
+        }
+
+        .contenido {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            margin-bottom: 25px;
+        }
+
+        .contenido h3 {
+            color: #397a43;
+            margin-bottom: 15px;
+            font-size: 25px;
+        }
+
+        .contenido p {
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .card .icono {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            color: #34723f;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .destacado {
+            background: #dcefd9;
+            border-left: 6px solid #4f9849;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .pasos {
+            counter-reset: paso;
+        }
+
+        .paso {
+            position: relative;
+            padding: 25px 25px 25px 75px;
+            background: white;
+            margin-bottom: 18px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.06);
+        }
+
+        .paso::before {
+            counter-increment: paso;
+            content: counter(paso);
+            position: absolute;
+            left: 20px;
+            top: 22px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #4d9348;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .tabla-contenedor {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #dce6df;
+        }
+
+        th {
+            background: #2f7040;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f0f7f1;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .galeria img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.03);
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #174c2b, #4c9149);
+            color: white;
+            border-radius: 22px;
+            padding: 45px;
+        }
+
+        .conclusion h2 {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #0d2d1b;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            margin: 6px;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 20px;
+            color: #a8e69a;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            section {
+                padding: 55px 17px;
+            }
+
+            .contenido,
+            .card {
+                padding: 23px;
+            }
+
+            .conclusion {
+                padding: 30px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="inicio">
+    <div class="hero">
+
+        <h1>Biorepelente Natural</h1>
+
+        <h2>Proyecto Interdisciplinario – Parte #2</h2>
+
+        <p>
+            Investigación, historia, elaboración y beneficios de una alternativa
+            natural para ayudar a mantener alejados determinados insectos.
+        </p>
+
+        <!-- TARJETA DE DATOS DEL ESTUDIANTE -->
+        <div class="datos">
+
+            <div class="dato">
+                <strong>👨‍🎓 Nombre:</strong><br>
+                Cristopher Blacio Flores
+            </div>
+
+            <div class="dato">
+                <strong>🏫 Curso:</strong><br>
+                1ero ALFA
+            </div>
+
+            <div class="dato">
+                <strong>👨‍🏫 Profesor:</strong><br>
+                JIMENEZ VILLAFUERTE RICARDO ENRIQUE
+            </div>
+
+        </div>
+
+        <a href="#introduccion" class="btn">
+            Explorar proyecto
+        </a>
+
+    </div>
+</header>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#introduccion">Introducción</a>
+    <a href="#problema">Problema</a>
+    <a href="#historia">Historia</a>
+    <a href="#plantas">Plantas</a>
+    <a href="#elaboracion">Elaboración</a>
+    <a href="#beneficios">Beneficios</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#conclusiones">Conclusiones</a>
+</nav>
+
+<section id="introduccion">
+
+    <div class="titulo">
+        <h2>🌿 Introducción</h2>
+        <p>Conociendo el propósito de nuestro proyecto</p>
+    </div>
+
+    <div class="contenido">
+
+        <p>
+            El proyecto interdisciplinario <strong>“Biorepelente Natural”</strong>
+            tiene como finalidad investigar y desarrollar una alternativa basada
+            en elementos de origen vegetal que pueda ayudar a disminuir la
+            presencia de determinados insectos.
+        </p>
+
+        <p>
+            Los insectos forman parte fundamental de los ecosistemas, pero
+            algunos pueden convertirse en una molestia o participar en la
+            transmisión de enfermedades. Por esta razón, las personas han
+            utilizado diferentes métodos para mantenerlos alejados.
+        </p>
+
+        <p>
+            En este proyecto se relacionan conocimientos de diferentes áreas,
+            como Lengua y Literatura, Ciencias Naturales, Historia y otras
+            asignaturas, con el propósito de comprender tanto los antecedentes
+            del uso de plantas como la importancia de investigar alternativas
+            responsables.
+        </p>
+
+        <div class="destacado">
+            <strong>Objetivo principal:</strong>
+            Investigar el uso de plantas y sustancias de origen natural con
+            propiedades aromáticas que puedan ser utilizadas como parte de una
+            propuesta de biorepelente.
+        </div>
+
+    </div>
+</section>
+
+<section id="problema">
+
+    <div class="titulo">
+        <h2>🔎 Problema de investigación</h2>
+        <p>¿Por qué investigar alternativas naturales?</p>
+    </div>
+
+    <div class="contenido">
+
+        <h3>La presencia de insectos</h3>
+
+        <p>
+            Los mosquitos y otros insectos pueden encontrarse en diferentes
+            ambientes, especialmente en lugares donde existen condiciones
+            favorables para su reproducción. Además de generar molestias,
+            algunos insectos pueden estar relacionados con la transmisión de
+            enfermedades.
+        </p>
+
+        <p>
+            Ante esta situación, existen diferentes productos comerciales
+            destinados a repeler insectos. Sin embargo, nuestro proyecto busca
+            estudiar otra posibilidad: aprovechar características de algunas
+            plantas aromáticas para desarrollar una propuesta de origen natural.
+        </p>
+
+        <div class="destacado">
+            <strong>Pregunta de investigación:</strong><br>
+            ¿Cómo pueden aprovecharse las propiedades aromáticas de determinadas
+            plantas para elaborar una alternativa natural que ayude a repeler
+            algunos insectos?
+        </div>
+
+    </div>
+</section>
+
+<section id="historia">
+
+    <div class="titulo">
+        <h2>🏺 Plantas repelentes en culturas antiguas</h2>
+        <p>Una mirada histórica al uso de plantas aromáticas</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icono">🇪🇬</div>
+            <h3>Egipto</h3>
+            <p>
+                Los antiguos egipcios utilizaban diferentes plantas y sustancias
+                aromáticas en prácticas relacionadas con la higiene, los
+                perfumes y el cuidado personal.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🏛️</div>
+            <h3>Grecia</h3>
+            <p>
+                En la antigua Grecia se empleaban numerosas plantas aromáticas
+                con fines medicinales, higiénicos y culinarios.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🇨🇳</div>
+            <h3>China</h3>
+            <p>
+                La tradición china desarrolló un amplio conocimiento sobre
+                plantas medicinales y aromáticas utilizadas durante siglos.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🌎</div>
+            <h3>Pueblos originarios</h3>
+            <p>
+                Diversos pueblos originarios de América conocían y utilizaban
+                plantas locales para higiene, medicina tradicional y protección.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="plantas">
+
+    <div class="titulo">
+        <h2>🌱 Plantas aromáticas</h2>
+        <p>Algunas especies estudiadas por sus aromas</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icono">🌿</div>
+            <h3>Citronela</h3>
+            <p>
+                Es conocida por su aroma característico y es utilizada
+                frecuentemente en productos destinados a ayudar a repeler
+                determinados insectos.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🍃</div>
+            <h3>Eucalipto</h3>
+            <p>
+                Sus hojas contienen compuestos aromáticos que producen un olor
+                intenso y característico.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🌱</div>
+            <h3>Menta</h3>
+            <p>
+                La menta posee un aroma fresco y característico y sus compuestos
+                aromáticos son aprovechados en diferentes preparaciones.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🌸</div>
+            <h3>Lavanda</h3>
+            <p>
+                Es una planta reconocida por su aroma y utilizada en productos
+                aromáticos, cosméticos y tradicionales.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section>
+
+    <div class="titulo">
+        <h2>🦟 Epidemias transmitidas por mosquitos</h2>
+        <p>La importancia histórica de estudiar estos insectos</p>
+    </div>
+
+    <div class="contenido">
+
+        <p>
+            A lo largo de la historia, algunas enfermedades transmitidas por
+            mosquitos han tenido importantes consecuencias sociales y
+            económicas. Entre ellas se encuentran la malaria, la fiebre amarilla
+            y el dengue.
+        </p>
+
+        <p>
+            Estas enfermedades han afectado a diferentes poblaciones y, en
+            determinados momentos históricos, también influyeron en proyectos,
+            movimientos de población y actividades económicas.
+        </p>
+
+        <h3>El Canal de Panamá</h3>
+
+        <p>
+            Durante la construcción del Canal de Panamá, las enfermedades
+            transmitidas por mosquitos representaron uno de los grandes
+            problemas sanitarios. La comprensión del papel de los mosquitos y
+            las medidas de control ayudaron posteriormente a reducir los riesgos.
+        </p>
+
+        <div class="destacado">
+            Este antecedente histórico demuestra que el control de los
+            mosquitos también está relacionado con la salud pública y la historia.
+        </div>
+
+    </div>
+</section>
+
+<section id="elaboracion">
+
+    <div class="titulo">
+        <h2>🧪 Elaboración del biorepelente</h2>
+        <p>Proceso general del proyecto</p>
+    </div>
+
+    <div class="pasos">
+
+        <div class="paso">
+            <h3>Selección de los materiales</h3>
+            <p>
+                Se identifican los ingredientes y materiales necesarios para
+                realizar la preparación.
+            </p>
+        </div>
+
+        <div class="paso">
+            <h3>Preparación</h3>
+            <p>
+                Los ingredientes se preparan cuidadosamente siguiendo el método
+                establecido para el proyecto.
+            </p>
+        </div>
+
+        <div class="paso">
+            <h3>Mezcla</h3>
+            <p>
+                Los componentes seleccionados se combinan de manera controlada
+                para obtener la preparación final.
+            </p>
+        </div>
+
+        <div class="paso">
+            <h3>Envasado</h3>
+            <p>
+                La preparación se coloca en un recipiente apropiado, limpio y
+                correctamente identificado.
+            </p>
+        </div>
+
+        <div class="paso">
+            <h3>Observación</h3>
+            <p>
+                Finalmente, se registran las observaciones obtenidas durante el
+                proyecto y se analizan los resultados.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="contenido">
+
+        <h3>⚠️ Recomendaciones de seguridad</h3>
+
+        <ul>
+            <li>No ingerir la preparación.</li>
+            <li>Evitar el contacto con los ojos.</li>
+            <li>Realizar las preparaciones con supervisión de un adulto.</li>
+            <li>Identificar correctamente el recipiente.</li>
+            <li>Comprobar que los ingredientes sean apropiados para el uso previsto.</li>
+            <li>El producto no debe considerarse un sustituto de medidas sanitarias o repelentes registrados.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section id="beneficios">
+
+    <div class="titulo">
+        <h2>🌎 Beneficios y aporte ambiental</h2>
+        <p>¿Qué podemos aprender de este proyecto?</p>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icono">🌿</div>
+            <h3>Aprovechamiento vegetal</h3>
+            <p>
+                Permite conocer las características de diferentes plantas y
+                explorar sus posibles aplicaciones.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">♻️</div>
+            <h3>Conciencia ambiental</h3>
+            <p>
+                Promueve la investigación de alternativas y el interés por el
+                aprovechamiento responsable de los recursos naturales.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">🔬</div>
+            <h3>Aprendizaje científico</h3>
+            <p>
+                Permite observar, investigar, experimentar, registrar resultados
+                y obtener conclusiones.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icono">📚</div>
+            <h3>Trabajo interdisciplinario</h3>
+            <p>
+                Combina conocimientos de diferentes asignaturas para estudiar
+                un mismo problema desde varias perspectivas.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="titulo">
+        <h2>📊 Comparación de alternativas</h2>
+        <p>Características generales</p>
+    </div>
+
+    <div class="tabla-contenedor">
+
+        <table>
+
+            <tr>
+                <th>Aspecto</th>
+                <th>Productos comerciales</th>
+                <th>Propuesta natural</th>
+            </tr>
+
+            <tr>
+                <td>Origen</td>
+                <td>Puede incluir diferentes sustancias formuladas industrialmente.</td>
+                <td>Busca aprovechar componentes de origen vegetal.</td>
+            </tr>
+
+            <tr>
+                <td>Investigación</td>
+                <td>Cuenta con procesos de formulación y evaluación propios.</td>
+                <td>Permite investigar y experimentar a pequeña escala.</td>
+            </tr>
+
+            <tr>
+                <td>Objetivo</td>
+                <td>Ayudar a repeler determinados insectos.</td>
+                <td>Estudiar una alternativa natural con finalidad repelente.</td>
+            </tr>
+
+            <tr>
+                <td>Educación</td>
+                <td>Permite conocer productos disponibles.</td>
+                <td>Favorece la investigación científica escolar.</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+<section id="resultados">
+
+    <div class="titulo">
+        <h2>📈 Resultados y observaciones</h2>
+        <p>Lo aprendido durante el desarrollo del proyecto</p>
+    </div>
+
+    <div class="contenido">
+
+        <p>
+            Durante el desarrollo del proyecto se pudo comprender que la
+            investigación de un producto natural requiere observar sus
+            características, conocer sus componentes y analizar cuidadosamente
+            los resultados.
+        </p>
+
+        <p>
+            También se pudo identificar la importancia de las plantas aromáticas
+            y conocer cómo diferentes culturas las han utilizado a lo largo de
+            la historia.
+        </p>
+
+        <p>
+            El proyecto permitió relacionar conocimientos científicos con
+            información histórica y habilidades de comunicación, demostrando
+            que un mismo tema puede ser estudiado desde diferentes asignaturas.
+        </p>
+
+        <div class="destacado">
+            <strong>Aprendizaje principal:</strong>
+            Investigar una alternativa natural no significa solamente preparar
+            un producto, sino comprender su origen, su propósito, sus posibles
+            beneficios y sus limitaciones.
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="titulo">
+        <h2>📸 Galería del proyecto</h2>
+        <p>Espacio para colocar fotografías propias</p>
+    </div>
+
+    <div class="galeria">
+
+        <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=900&q=80"
+             alt="Plantas naturales">
+
+        <img src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=900&q=80"
+             alt="Hojas de plantas">
+
+        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=900&q=80"
+             alt="Naturaleza">
+
+    </div>
+
+    <div class="destacado" style="margin-top:30px;">
+        <strong>💡 Consejo:</strong>
+        Puedes reemplazar estas imágenes por fotografías tomadas durante tu
+        propio proyecto: materiales, preparación, producto final y exposición.
+    </div>
+
+</section>
+
+<section id="conclusiones">
+
+    <div class="titulo">
+        <h2>✅ Conclusiones y recomendaciones</h2>
+    </div>
+
+    <div class="conclusion">
+
+        <h2>Conclusiones</h2>
+
+        <p>
+            El proyecto del biorepelente natural permitió investigar el uso
+            tradicional de plantas aromáticas y comprender que diferentes
+            culturas han aprovechado sus características durante mucho tiempo.
+        </p>
+
+        <p>
+            Además, se comprendió que la elaboración de una alternativa natural
+            requiere investigación, organización, observación y responsabilidad.
+            No basta con utilizar ingredientes naturales: es necesario conocer
+            sus características y utilizar cada componente de manera adecuada.
+        </p>
+
+        <p>
+            Finalmente, el proyecto permitió integrar conocimientos de varias
+            asignaturas y desarrollar habilidades de investigación y
+            comunicación, demostrando la importancia del trabajo
+            interdisciplinario.
+        </p>
+
+        <br>
+
+        <h2>Recomendaciones</h2>
+
+        <ul>
+            <li>Investigar previamente las características de cada ingrediente.</li>
+            <li>Utilizar materiales limpios y adecuados.</li>
+            <li>Registrar las observaciones obtenidas durante el proyecto.</li>
+            <li>Trabajar con responsabilidad y supervisión cuando sea necesario.</li>
+            <li>Continuar investigando alternativas que respeten el ambiente.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="titulo">
+        <h2>📚 Fuentes de información</h2>
+        <p>Referencias utilizadas para ampliar la investigación</p>
+    </div>
+
+    <div class="contenido">
+
+        <ul>
+            <li>Organización Mundial de la Salud (OMS) – información sobre enfermedades transmitidas por vectores.</li>
+            <li>Centers for Disease Control and Prevention (CDC) – información sobre mosquitos y enfermedades transmitidas por estos insectos.</li>
+            <li>Enciclopedias y fuentes educativas sobre plantas aromáticas y medicina tradicional.</li>
+            <li>Material educativo proporcionado para el proyecto interdisciplinario.</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p><strong>🌿 BIOREPELENTE NATURAL</strong></p>
+    <p>Proyecto Interdisciplinario – Lengua y Literatura</p>
+    <p>1.º BGU</p>
+    <p>Estudiante: Cristopher Blacio Flores</p>
+
+    <a href="#inicio" class="volver">⬆ Volver al inicio</a>
+
+</footer>
+
+</body>
+</html>
+```
